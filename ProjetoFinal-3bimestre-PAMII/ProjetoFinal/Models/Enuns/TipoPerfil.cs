@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoFinal.Models.Enuns
 {
-    internal class TipoPerfil
+    public class TipoPerfil
     { //Mapear o Enum seguindo a API
 
-
+        public int IdTipoPerfil { get; set; }
+        public string NomeTipoPerfil { get; set; } = string.Empty;
     }
 }

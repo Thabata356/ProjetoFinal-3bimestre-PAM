@@ -62,12 +62,11 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Views\" />
-	  <Folder Include="ViewModels\" />
-	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

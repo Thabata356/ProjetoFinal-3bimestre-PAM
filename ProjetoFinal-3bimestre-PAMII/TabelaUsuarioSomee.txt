@@ -1,0 +1,17 @@
+﻿BEGIN TRANSACTION;
+
+CREATE TABLE [TB_USUARIOS] (
+    [Id] int NOT NULL IDENTITY,
+    [NomeUsuario] Varchar (30) NOT NULL,
+    [ChamadosAbertos] Char (3) NULL,
+    [ChamadosConcluidos] Char (3) NULL,
+    [EmailUsuario] Varchar (50) NOT NULL,
+    [SenhaUsuario] Varchar (30) NOT NULL,
+    [TelefoneUsuario] Char(11) NOT NULL,
+    [CpfUsuario] Char(11) NOT NULL,
+    [TipoPerfil] int NOT NULL
+    CONSTRAINT [PK_TB_USUARIOS] PRIMARY KEY ([Id])
+);
+
+COMMIT;
+GO

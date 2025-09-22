@@ -9,15 +9,15 @@ namespace ProjetoFinal.Models
 {
     public class Usuario
     {
-        public string rmUsuario;
-        public string chamadosAbertos;
-        public string chamadosConcluidos;
-        public string emailUsuario;
-        public string nomeUsuario;
-        public string senhaUsuario;
-        public string telefoneUsuario;
-        public string cpfUsuario;
-        public TipoPerfil tipoPerfil;
+        public string RmUsuario { get; set; } = string.Empty;
+        public string ChamadosAbertos { get; set; } = string.Empty;
+        public string ChamadosConcluidos { get; set; } = string.Empty;
+        public string EmailUsuario { get; set; } = string.Empty;
+        public string NomeUsuario { get; set; } = string.Empty;
+        public string SenhaUsuario { get; set; } = string.Empty;
+        public string TelefoneUsuario { get; set; } = string.Empty;
+        public string CpfUsuario { get; set; } = string.Empty;
+        public TipoPerfil TipoPerfil { get; set; }
 
     }
 }
