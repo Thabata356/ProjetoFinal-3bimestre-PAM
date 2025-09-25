@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoFinal.Models.Enuns
+namespace ProjetoFinal.Models
 {
     public class TipoPerfil
-    { //Mapear o Enum seguindo a API
-
-        public int IdTipoPerfil { get; set; }
+    {
+        public int Id { get; set; }
         public string NomeTipoPerfil { get; set; } = string.Empty;
     }
 }

@@ -6,26 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjetoFinal.Models;
 using ProjetoFinal.Services.Usuarios;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Microsoft.Maui.Controls; 
+using Microsoft.Maui.Controls;
+using ProjetoFinal.Models.Enuns;
 
 namespace ProjetoFinal.ViewModels.Usuarios
 {
     public class UsuarioViewModel : BaseViewModel
     {
-        private UsuarioService _uService;
-        public ICommand CadastrarCommand { get; set; }//ICommandMapper da erro
+        private UsuarioService uService;
+        public ICommand CadastrarCommand { get; set; }
 
         public UsuarioViewModel()
         {
-            _uService = new UsuarioService();
-            InicializarCommands();
+            uService = new UsuarioService();
+            CadastrarCommand = new Command(async () => await CadastrarUsuario());
+            //InicializarCommands();
         }
 
-        public void InicializarCommands()
+        /*public void InicializarCommands()
         {
-            CadastrarCommand = new Command(async () => await CadastrarUsuario());//Da erro aqui
-        }
+            CadastrarCommand = new Command(async () => await CadastrarUsuario());
+        }*/
 
         private string _rmUsuario;
         private string _emailUsuario;
@@ -33,7 +36,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
         private string _senhaUsuario;
         private string _telefoneUsuario;
         private string _cpfUsuario;
-        private string _perfilUsuario;
+        private TipoPerfil _tipoPerfil;
         private string _tokenUsuario;
 
         public string RmUsuario
@@ -42,7 +45,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _rmUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(RmUsuario));
                 //ropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RmUsuario)));
             }
         }
@@ -53,7 +56,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _emailUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(EmailUsuario));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EmailUsuario)));
             }
         }
@@ -64,7 +67,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _nomeUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(NomeUsuario));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NomeUsuario)));
             }
         }
@@ -75,7 +78,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _senhaUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(SenhaUsuario));
             }
         }
 
@@ -85,7 +88,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _telefoneUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(TelefoneUsuario));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TelefoneUsuario)));
             }
         }
@@ -96,30 +99,54 @@ namespace ProjetoFinal.ViewModels.Usuarios
             set
             {
                 _cpfUsuario = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(CpfUsuario));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CpfUsuario)));
             }
         }
 
-        public string PerfilUsuario
+        private ObservableCollection<TipoPerfil> listaTiposPerfil;
+        public ObservableCollection<TipoPerfil> ListaTiposPerfil
         {
-            get => _perfilUsuario;
+            get { return listaTiposPerfil; }
             set
             {
-                _perfilUsuario = value;
-                OnPropertyChanged();
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CpfUsuario)));
+                if (value != null)
+                {
+                    listaTiposPerfil = value;
+                    OnPropertyChanged(nameof(ListaTiposPerfil));
+                }
             }
         }
 
-        public string TokenUsuario
+        public async Task ObterTipoPerfil()
         {
-            get => _tokenUsuario;
+            try
+            {
+                ListaTiposPerfil = new ObservableCollection<TipoPerfil>();
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 1, NomeTipoPerfil = "GestorGearl" });
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 2, NomeTipoPerfil = "GestorDepartamento" });
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 3, NomeTipoPerfil = "Funcionario" });
+                OnPropertyChanged(nameof(ListaTiposPerfil));
+
+            }
+            catch (Exception ex) 
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        private TipoPerfil tipoPerfilSelecionado;
+        public TipoPerfil TipoPerfilSelecionado
+        {
+            get { return tipoPerfilSelecionado; } 
             set
             {
-                _tokenUsuario = value;
-                OnPropertyChanged();
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CpfUsuario)));
+                if (value != null)
+                {
+                    tipoPerfilSelecionado = value;
+                    OnPropertyChanged(nameof(TipoPerfilSelecionado));
+                }
             }
         }
 
@@ -127,48 +154,30 @@ namespace ProjetoFinal.ViewModels.Usuarios
         {
             try
             {
-                Usuario u = new Usuario();
-                u.RmUsuario = _rmUsuario;
-                u.NomeUsuario = _nomeUsuario;
-                u.EmailUsuario = _emailUsuario;
-                u.CpfUsuario = _cpfUsuario;
-                u.SenhaUsuario = _senhaUsuario;
-                u.TelefoneUsuario = _telefoneUsuario;
-                u.PerfilUsuario = _perfilUsuario;
-                u.TokenUsuario = _tokenUsuario;
 
-
-                Usuario uCadastrado = await _uService.PostCadastrarUsuarioAsync(u);
-
-                if (!string.IsNullOrEmpty(uCadastrado.TokenUsuario))
+                Usuario usuario = new Usuario()
                 {
-                    string mensagem = $"Bem-vindo(a) {uCadastrado.NomeUsuario}.";
+                    RmUsuario = this._rmUsuario,
+                    NomeUsuario = this._nomeUsuario,
+                    EmailUsuario = this._emailUsuario,
+                    CpfUsuario = this._cpfUsuario,
+                    SenhaUsuario = this._senhaUsuario,
+                    TelefoneUsuario = this._telefoneUsuario,
+                    TipoPerfil = (TipoPerfilEnum)tipoPerfilSelecionado.Id
+                };
 
-                    Preferences.Set("UsuarioRm", uCadastrado.RmUsuario);
-                    Preferences.Set("UsuarioNome", uCadastrado.NomeUsuario);
-                    Preferences.Set("UsuarioEmail", uCadastrado.EmailUsuario);
-                    Preferences.Set("UsuarioUSenha", uCadastrado.SenhaUsuario);
-                    Preferences.Set("UsuarioUTelefone", uCadastrado.TelefoneUsuario);
-                    Preferences.Set("UsuarioCpf", uCadastrado.CpfUsuario);
-                    Preferences.Set("UsuarioPerfil", uCadastrado.PerfilUsuario);
-                    Preferences.Set("UsuarioToken", uCadastrado.TokenUsuario);
 
-                    await Application.Current.MainPage
-                        .DisplayAlert("Informação", mensagem, "OK");
+                await uService.PostCadastrarUsuarioAsync(usuario);
 
-                    Application.Current.MainPage = new MainPage();
-                }
-                else
-                {
-                    await Application.Current.MainPage
-                        .DisplayAlert("Informação", "Dados incorretos: (", "OK");
-                }
+                await Application.Current.MainPage
+                       .DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");
 
+                await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex) 
-            { 
+            {
                 await Application.Current.MainPage
-                    .DisplayAlert("Inforação", ex.Message + "Detalhes" + ex.InnerException, "OK");
+                    .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
     }
