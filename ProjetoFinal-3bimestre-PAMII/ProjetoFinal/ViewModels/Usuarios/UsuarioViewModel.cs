@@ -36,8 +36,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
         private string _senhaUsuario;
         private string _telefoneUsuario;
         private string _cpfUsuario;
-        private TipoPerfil _tipoPerfil;
-        private string _tokenUsuario;
+        //private TipoPerfil _tipoPerfil;
 
         public string RmUsuario
         {
@@ -123,8 +122,8 @@ namespace ProjetoFinal.ViewModels.Usuarios
             try
             {
                 ListaTiposPerfil = new ObservableCollection<TipoPerfil>();
-                ListaTiposPerfil.Add(new TipoPerfil() { Id = 1, NomeTipoPerfil = "GestorGearl" });
-                ListaTiposPerfil.Add(new TipoPerfil() { Id = 2, NomeTipoPerfil = "GestorDepartamento" });
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 1, NomeTipoPerfil = "Gestor Gearl" });
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 2, NomeTipoPerfil = "Gestor Departamento" });
                 ListaTiposPerfil.Add(new TipoPerfil() { Id = 3, NomeTipoPerfil = "Funcionario" });
                 OnPropertyChanged(nameof(ListaTiposPerfil));
 

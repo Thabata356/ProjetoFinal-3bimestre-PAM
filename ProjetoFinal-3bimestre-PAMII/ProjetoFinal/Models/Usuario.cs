@@ -17,8 +17,6 @@ namespace ProjetoFinal.Models
         public string SenhaUsuario { get; set; } = string.Empty;
         public string TelefoneUsuario { get; set; } = string.Empty;
         public string CpfUsuario { get; set; } = string.Empty;
-        //public string PerfilUsuario { get; set; } = string.Empty; 
-        public string TokenUsuario { get; set; } = string.Empty;
         public TipoPerfilEnum TipoPerfil { get; set; }
 
     }

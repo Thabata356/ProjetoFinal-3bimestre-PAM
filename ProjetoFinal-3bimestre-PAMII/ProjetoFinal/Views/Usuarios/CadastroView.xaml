@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProjetoFinal.ViewModels.Usuarios"
+             x:Class="ProjetoFinal.Views.Usuarios.CadastroView"
+             x:DataType="local:UsuarioViewModel"
+             Title="CadastroView">
+
+    <!--<ContentPage.BindingContext>
+        <local:UsuarioViewModel/>
+    </ContentPage.BindingContext> -->
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="15">
+
+            <Label Text="Cadastre-se para começar!" 
+               FontSize="24" 
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+            <Entry Placeholder="Nome Completo" 
+               Text="{Binding NomeUsuario}"/>
+
+            <Entry Placeholder="RM do Aluno" 
+               Text="{Binding RmUsuario}" 
+               Keyboard="Numeric"/>
+
+            <Entry Placeholder="Email" 
+               Text="{Binding EmailUsuario}" 
+               Keyboard="Email"/>
+
+            <Entry Placeholder="Telefone" 
+               Text="{Binding TelefoneUsuario}" 
+               Keyboard="Telephone"/>
+
+            <Entry Placeholder="CPF" 
+               Text="{Binding CpfUsuario}" 
+               Keyboard="Numeric"/>
+
+            <Entry Placeholder="Senha" 
+               Text="{Binding SenhaUsuario}" 
+               IsPassword="True"/>
+
+            <Button Text="Cadastrar" 
+                Command="{Binding CadastrarCommand}" 
+                Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
