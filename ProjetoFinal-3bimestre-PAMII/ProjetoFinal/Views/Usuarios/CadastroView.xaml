@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:ProjetoFinal.ViewModels.Usuarios"
              x:Class="ProjetoFinal.Views.Usuarios.CadastroView"
              x:DataType="local:UsuarioViewModel"
-             Title="CadastroView">
+             Title="Cadastro">
 
     <!--<ContentPage.BindingContext>
         <local:UsuarioViewModel/>
@@ -13,7 +13,7 @@
     <ScrollView>
         <VerticalStackLayout Margin="20" Spacing="15">
 
-            <Label Text="Cadastre-se para começar!" 
+            <Label Text="Cadastre os usuários para começar!" 
                FontSize="24" 
                FontAttributes="Bold"
                HorizontalOptions="Center" />
@@ -21,7 +21,7 @@
             <Entry Placeholder="Nome Completo" 
                Text="{Binding NomeUsuario}"/>
 
-            <Entry Placeholder="RM do Aluno" 
+            <Entry Placeholder="RM do Funcionário" 
                Text="{Binding RmUsuario}" 
                Keyboard="Numeric"/>
 
@@ -40,6 +40,12 @@
             <Entry Placeholder="Senha" 
                Text="{Binding SenhaUsuario}" 
                IsPassword="True"/>
+
+            <Label Text="Tipo de Perfil" FontAttributes="Bold"/>
+            <Picker Title="Selecione o tipo de perfil"
+                    ItemsSource="{Binding ListaTiposPerfil}"
+                    ItemDisplayBinding="{Binding NomeTipoPerfil}"
+                    SelectedItem="{Binding TipoPerfilSelecionado}" />
 
             <Button Text="Cadastrar" 
                 Command="{Binding CadastrarCommand}" 

@@ -22,6 +22,8 @@ namespace ProjetoFinal.ViewModels.Usuarios
         {
             uService = new UsuarioService();
             CadastrarCommand = new Command(async () => await CadastrarUsuario());
+            Task.Run(async () => await ObterTipoPerfil());
+
             //InicializarCommands();
         }
 
@@ -122,7 +124,7 @@ namespace ProjetoFinal.ViewModels.Usuarios
             try
             {
                 ListaTiposPerfil = new ObservableCollection<TipoPerfil>();
-                ListaTiposPerfil.Add(new TipoPerfil() { Id = 1, NomeTipoPerfil = "Gestor Gearl" });
+                ListaTiposPerfil.Add(new TipoPerfil() { Id = 1, NomeTipoPerfil = "Gestor Geral" });
                 ListaTiposPerfil.Add(new TipoPerfil() { Id = 2, NomeTipoPerfil = "Gestor Departamento" });
                 ListaTiposPerfil.Add(new TipoPerfil() { Id = 3, NomeTipoPerfil = "Funcionario" });
                 OnPropertyChanged(nameof(ListaTiposPerfil));
@@ -166,12 +168,16 @@ namespace ProjetoFinal.ViewModels.Usuarios
                 };
 
 
-                await uService.PostCadastrarUsuarioAsync(usuario);
+                //await uService.PostCadastrarUsuarioAsync(usuario);
+                await uService.PostCadastrarUsuario(usuario);
 
-                await Application.Current.MainPage
-                       .DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Usuário cadastrado!", $"Nome: {usuario.NomeUsuario}\nCPF: {usuario.CpfUsuario}\nEmail: {usuario.EmailUsuario}", "OK");
 
-                await Shell.Current.GoToAsync("..");
+
+                /*await Application.Current.MainPage
+                       .DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");*/
+
+                await Shell.Current.GoToAsync("//LoginView");
             }
             catch (Exception ex) 
             {
@@ -179,5 +185,6 @@ namespace ProjetoFinal.ViewModels.Usuarios
                     .DisplayAlert("Ops", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
+
     }
 }

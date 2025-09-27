@@ -10,6 +10,11 @@
     <ShellContent
         Title="Cadastro"
         ContentTemplate="{DataTemplate viewsUsuarios:CadastroView}"
-        Route="CadastroView" /> 
+        Route="CadastroView" />
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate viewsUsuarios:LoginView}"
+        Route="LoginView" />
 
 </Shell>
