@@ -2,11 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjetoFinal.Views.Usuarios.LoginView"
-             Title="Login">
-    <VerticalStackLayout>
-        <Label 
-            Text="Funfou!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Login"
+             BackgroundColor="#44A1A0">
+
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center">
+
+        <Label Text="Funcionou!"
+               TextColor="White"
+               FontSize="48"
+               FontFamily="Montserrat"
+               FontAttributes="Bold" />
+
     </VerticalStackLayout>
 </ContentPage>

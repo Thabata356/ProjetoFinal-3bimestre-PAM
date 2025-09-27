@@ -4,53 +4,220 @@
              xmlns:local="clr-namespace:ProjetoFinal.ViewModels.Usuarios"
              x:Class="ProjetoFinal.Views.Usuarios.CadastroView"
              x:DataType="local:UsuarioViewModel"
-             Title="Cadastro">
+             Title="CadastroView"
+             BackgroundColor="#44A1A0">
 
-    <!--<ContentPage.BindingContext>
-        <local:UsuarioViewModel/>
-    </ContentPage.BindingContext> -->
+    <Grid>
+        <!-- Forma -->
+        <Image Source="forma.png"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               Aspect="Fill"
+               HeightRequest="600"
+               WidthRequest="1000"
+               Margin="0,0,-180,0" />
 
-    <ScrollView>
-        <VerticalStackLayout Margin="20" Spacing="15">
+        <!-- Volta -->
+        <Label Text="← Voltar"
+               TextColor="White"
+               FontFamily="MontserratRegular"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="End"
+               Margin="0,45,30,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding VoltarCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
 
-            <Label Text="Cadastre os usuários para começar!" 
-               FontSize="24" 
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+        <ScrollView>
+            <VerticalStackLayout Margin="30"
+                                 Spacing="20">
 
-            <Entry Placeholder="Nome Completo" 
-               Text="{Binding NomeUsuario}"/>
+                <!-- Logo -->
+                <Image Source="logo.png"
+                       HorizontalOptions="Start"
+                       HeightRequest="170"
+                       WidthRequest="170"
+                       Margin="0,-60,0,-270" />
 
-            <Entry Placeholder="RM do Funcionário" 
-               Text="{Binding RmUsuario}" 
-               Keyboard="Numeric"/>
+                <!-- CADASTRO -->
+                <Label Text="CADASTRO"
+                       FontSize="32"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontFamily="MontserratRegular"
+                       FontAttributes="Bold"
+                       Margin="0,280,0,10" />
 
-            <Entry Placeholder="Email" 
-               Text="{Binding EmailUsuario}" 
-               Keyboard="Email"/>
+                <!-- Campo NOME -->
+                <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                    <HorizontalStackLayout Spacing="15"
+                                           VerticalOptions="Center">
+                        <Image Source="user.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="NOME"
+                               Text="{Binding NomeUsuario}"
+                               TextColor="#FFF"
+                               PlaceholderColor="#FFF"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
 
-            <Entry Placeholder="Telefone" 
-               Text="{Binding TelefoneUsuario}" 
-               Keyboard="Telephone"/>
+                <!-- Campo TIPO DO PERFIL -->
+                <Border BackgroundColor="#44A1A0"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,10">
+                    <HorizontalStackLayout Spacing="15"
+                                            VerticalOptions="Center">
+                        <Image Source="grupo.png"
+                               WidthRequest="20"
+                               HeightRequest="40"
+                               VerticalOptions="Center"/>
+                        <VerticalStackLayout Spacing="5"
+                                             VerticalOptions="Center">
+                            <Label Text="TIPO PERFIL"
+                                   TextColor="White"
+                                   FontFamily="MontserratRegular"/>
+                            <Picker ItemsSource="{Binding ListaTiposPerfil}"
+                                    ItemDisplayBinding="{Binding NomeTipoPerfil}"
+                                    SelectedItem="{Binding TipoPerfilSelecionado}" 
+                                    Title="Selecione o tipo de perfil"
+                                    TitleColor="White"
+                                    TextColor="White"
+                                    FontFamily="Montserrat"
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Border>
+                
+                <!-- Campo RM -->
+                <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                    <HorizontalStackLayout Spacing="15"
+                                           VerticalOptions="Center">
+                        <Image Source="rm.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="RM"
+                               Text="{Binding RmUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               Keyboard="Numeric"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
 
-            <Entry Placeholder="CPF" 
-               Text="{Binding CpfUsuario}" 
-               Keyboard="Numeric"/>
+                <!-- Campo EMAIL -->
+                <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                    <HorizontalStackLayout Spacing="15"
+                                           VerticalOptions="Center">
+                        <Image Source="email.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="EMAIL"
+                               Text="{Binding EmailUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               Keyboard="Email"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
 
-            <Entry Placeholder="Senha" 
-               Text="{Binding SenhaUsuario}" 
-               IsPassword="True"/>
+                <!-- Campo CPF -->
+                <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                    <HorizontalStackLayout Spacing="15"
+                                           VerticalOptions="Center">
+                        <Image Source="cpf.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="CPF"
+                               Text="{Binding CpfUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               Keyboard="Numeric"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
 
-            <Label Text="Tipo de Perfil" FontAttributes="Bold"/>
-            <Picker Title="Selecione o tipo de perfil"
-                    ItemsSource="{Binding ListaTiposPerfil}"
-                    ItemDisplayBinding="{Binding NomeTipoPerfil}"
-                    SelectedItem="{Binding TipoPerfilSelecionado}" />
+                <!-- Campo SENHA -->
+                <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                    <HorizontalStackLayout Spacing="15"
+                                           VerticalOptions="Center">
+                        <Image Source="senha.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="SENHA"
+                               Text="{Binding SenhaUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               IsPassword="True"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
 
-            <Button Text="Cadastrar" 
-                Command="{Binding CadastrarCommand}" 
-                Margin="0,20,0,0"/>
+                <!-- Botão CONCLUIR -->
+                <Button Text="CONCLUIR"
+                        Command="{Binding CadastrarCommand}"
+                        BackgroundColor="white"
+                        TextColor="#44A1A0"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        CornerRadius="4"
+                        Margin="0,30,0,0"/>
 
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
