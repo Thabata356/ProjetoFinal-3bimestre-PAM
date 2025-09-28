@@ -70,7 +70,8 @@
                                PlaceholderColor="#FFF"
                                BackgroundColor="Transparent"
                                FontFamily="Montserrat"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
                     </HorizontalStackLayout>
                 </Border>
 
@@ -95,12 +96,12 @@
                             <Picker ItemsSource="{Binding ListaTiposPerfil}"
                                     ItemDisplayBinding="{Binding NomeTipoPerfil}"
                                     SelectedItem="{Binding TipoPerfilSelecionado}" 
-                                    Title="Selecione o tipo de perfil"
                                     TitleColor="White"
                                     TextColor="White"
                                     FontFamily="Montserrat"
                                     BackgroundColor="Transparent"
-                                    HorizontalOptions="Fill" />
+                                    HorizontalOptions="Fill"
+                                    WidthRequest="350"/>
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
                 </Border>
@@ -126,7 +127,8 @@
                                BackgroundColor="Transparent"
                                FontFamily="Montserrat"
                                Keyboard="Numeric"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
                     </HorizontalStackLayout>
                 </Border>
 
@@ -151,7 +153,8 @@
                                BackgroundColor="Transparent"
                                FontFamily="Montserrat"
                                Keyboard="Email"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
                     </HorizontalStackLayout>
                 </Border>
 
@@ -176,7 +179,8 @@
                                BackgroundColor="Transparent"
                                FontFamily="Montserrat"
                                Keyboard="Numeric"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
                     </HorizontalStackLayout>
                 </Border>
 
@@ -201,7 +205,8 @@
                                BackgroundColor="Transparent"
                                FontFamily="Montserrat"
                                IsPassword="True"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
                     </HorizontalStackLayout>
                 </Border>
 

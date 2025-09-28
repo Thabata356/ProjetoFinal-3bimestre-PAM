@@ -5,14 +5,158 @@
              Title="Login"
              BackgroundColor="#44A1A0">
 
-    <VerticalStackLayout VerticalOptions="Center"
-                         HorizontalOptions="Center">
+    <Grid>
+        <!-- Forma -->
+        <Image Source="forma.png"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               Aspect="Fill"
+               HeightRequest="600"
+               WidthRequest="1000"
+               Margin="0,0,-180,0" />
 
-        <Label Text="Funcionou!"
-               TextColor="White"
-               FontSize="48"
-               FontFamily="Montserrat"
-               FontAttributes="Bold" />
+        <ScrollView>
+            <VerticalStackLayout Margin="30"
+                                 Spacing="20">
 
-    </VerticalStackLayout>
+                <!-- Logo -->
+                <Image Source="logo.png"
+                       HorizontalOptions="Start"
+                       HeightRequest="170"
+                       WidthRequest="170"
+                       Margin="0,-60,0,-270" />
+
+                <!-- CADASTRO -->
+                <Label Text="LOGIN"
+                       FontSize="32"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontFamily="MontserratRegular"
+                       FontAttributes="Bold"
+                       Margin="0,280,0,10" />
+
+
+                <Grid ColumnDefinitions="*,*"
+                      WidthRequest="437.2"
+                      ColumnSpacing="20">
+
+                    <!-- Campo ENTRAR COMO -->
+                    <Border Grid.Column="0"
+                            BackgroundColor="#44A1A0"
+                            StrokeShape="RoundRectangle 4"
+                            Stroke="White"
+                            StrokeThickness="1.40"
+                            Padding="15,10">
+                        <HorizontalStackLayout Spacing="15"
+                                               VerticalOptions="Center">
+                            <Image Source="grupo.png"
+                                   WidthRequest="20"
+                                   HeightRequest="40"
+                                   VerticalOptions="Center"/>   
+                            <VerticalStackLayout Spacing="5"
+                                                 VerticalOptions="Center">
+                                <Label Text="ENTRAR COMO"
+                                       TextColor="White"
+                                       FontFamily="MontserratRegular"/> 
+                                <Picker TitleColor="White"
+                                        TextColor="White"
+                                        FontFamily="Montserrat"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="Fill"
+                                        WidthRequest="145"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Campo CÓDIGO DA ETEC -->
+                    <Border Grid.Column="1"
+                            BackgroundColor="#44A1A0"
+                            StrokeShape="RoundRectangle 4"
+                            Stroke="White"
+                            StrokeThickness="1.40"
+                            Padding="15,0">
+                        <HorizontalStackLayout Spacing="15"
+                                               VerticalOptions="Center">
+                            <Image Source="rm.png"
+                                   WidthRequest="20"
+                                   HeightRequest="20"
+                                   VerticalOptions="Center"/>
+                            <Entry Placeholder="CÓD. ETEC"
+                                   TextColor="White"
+                                   PlaceholderColor="White"
+                                   BackgroundColor="Transparent"
+                                   FontFamily="Montserrat"
+                                   Keyboard="Numeric"
+                                   VerticalOptions="Center"
+                                   WidthRequest="145"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Campo RM -->
+                    <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                        <HorizontalStackLayout Spacing="15"
+                                               VerticalOptions="Center">
+                            <Image Source="rm.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                            <Entry Placeholder="RM"
+                               Text="{Binding RmUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               Keyboard="Numeric"
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Campo SENHA -->
+                    <Border BackgroundColor="#44A1A0"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        StrokeShape="RoundRectangle 4"
+                        Stroke="White"
+                        StrokeThickness="1.40"
+                        Padding="15,0">
+                        <HorizontalStackLayout Spacing="15"
+                                               VerticalOptions="Center">
+                            <Image Source="senha.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                            <Entry Placeholder="SENHA"
+                               Text="{Binding SenhaUsuario}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="Transparent"
+                               FontFamily="Montserrat"
+                               IsPassword="True"
+                               VerticalOptions="Center"
+                               WidthRequest="390"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Botão ENTRAR -->
+                    <Button Text="ENTRAR"
+                        BackgroundColor="white"
+                        TextColor="#44A1A0"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HeightRequest="65.58"
+                        WidthRequest="437.2"
+                        CornerRadius="4"
+                        Margin="0,30,0,0"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
